@@ -1,0 +1,23 @@
+@use "../../styles/util.scss";
+@import "../../styles/variables.scss";
+
+.login-container {
+  @extend .flex-column, .padding-top-1;
+  height: 100%;
+  width: 50%;
+  .login-box {
+    width: 80%;
+    @extend .flex-column;
+    background-color: $light-cream;
+    box-shadow: 0.2rem 0.2rem 0.2rem 0.2rem $light-gray;
+    img {
+      width: calc($spacing-unit * 15);
+    }
+  }
+  @media screen and (max-width: $medium) {
+    width: 100%;
+    .login-box {
+      width: 100%;
+    }
+  }
+}

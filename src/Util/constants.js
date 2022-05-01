@@ -1,0 +1,8 @@
+const BUTTON = {
+  BUTTON: "BUTTON",
+  PRIMARY: "PRIMARY",
+  SECONDARY: "SECONDARY",
+  LINK: "LINK",
+};
+
+export { BUTTON };

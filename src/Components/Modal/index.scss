@@ -1,0 +1,27 @@
+@use "../../styles/util.scss";
+#kash-modal {
+  display: flex;
+  cursor: pointer;
+  ::-webkit-scrollbar {
+    display: none;
+  }
+}
+.kash-modal {
+  @extend .flex-row, .padding-full;
+  top: 0;
+  border-radius: 1rem;
+  overflow-y: scroll;
+
+  .modal-header {
+    width: 100%;
+    @extend .flex-row, .flex-space-between;
+    .modal-header-title {
+      margin: 0;
+      font-size: 1.6rem;
+    }
+  }
+  .modal-container {
+    @extend .padding-full;
+    width: 90%;
+  }
+}
