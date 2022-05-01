@@ -1,0 +1,20 @@
+@use "../../styles/util.scss";
+@import "../../styles/colors.scss";
+
+header {
+  @extend .flex-row, .padding-full, .flex-space-between;
+  background-color: $light-blue;
+  .logo {
+    width: 15vw;
+  }
+  ul {
+    @extend .flex-row, .gap-1;
+  }
+  li {
+    list-style: none;
+  }
+  a {
+    text-decoration: none;
+    color: $black;
+  }
+}
