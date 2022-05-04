@@ -3,16 +3,45 @@
 
 .form-container {
   width: 100%;
-  @extend .flex-column, .flex-justify-center, .padding-full;
+  gap: 0.4rem;
+  @extend .flex-column, .flex-justify-center;
   .input-container {
     width: 100%;
+  }
+  .kash-container {
+    padding: 0;
+  }
+  .kash-container > div {
+    @extend .flex-column, .align-start;
+    width: 50%;
+  }
+  svg {
+    @extend .padding-full;
+  }
+  .input {
+    @extend .flex-row;
+    border: 1px solid $light-gray;
+    width: 100%;
+  }
+  .input:focus-within {
+    border: 1px solid $light-blue;
   }
   input {
     font-family: Poppins;
     width: 100%;
+    background-color: $white;
+    margin-top: 0rem;
+    border-radius: 0.2rem;
   }
   fieldset:focus-within {
     border: 1px solid $light-blue;
+  }
+  .error-msg {
+    color: $red;
+  }
+  .error-border,
+  .error-border:focus-within {
+    border: 1px solid $light-maroon;
   }
   .form-title {
     font-size: 2rem;
@@ -29,6 +58,22 @@
     }
   }
   .btn-submit {
+    @extend .padding-full;
     width: 50%;
+  }
+  .btn-submit-container {
+    @extend .flex-row, .flex-justify-center, .gap-half;
+    color: $black;
+  }
+  .loader {
+    height: 0.5rem;
+    width: 0.5rem;
+    border: 10px solid $pale-gray;
+    border-top: 10px solid $light-blue;
+  }
+  @media screen and (max-width: $medium) {
+    .kash-container > div {
+      width: 80%;
+    }
   }
 }

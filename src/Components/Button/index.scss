@@ -3,7 +3,7 @@
 
 div {
   .btn {
-    @extend .padding-full;
+    @extend .padding-half;
     width: 100%;
     cursor: pointer;
   }
@@ -14,5 +14,14 @@ div {
   .btn-outline {
     background-color: $white;
     border: 1px solid $light-blue;
+  }
+  .btn-link {
+    color: $black;
+    font-weight: 600;
+    text-decoration: underline;
+    font-size: 1.2rem;
+  }
+  a {
+    text-decoration: none;
   }
 }
