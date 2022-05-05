@@ -6,7 +6,7 @@ function useFormValidator() {
 
   const isFieldsEmpty = () => {
     Object.keys(fields).forEach((key) => {
-      if (fields[key].isEmpty) {
+      if (fields[key].value.length === 0) {
         setErrorState({ errorMsg: "Please Fill All Fields" });
         return true;
       }
@@ -37,14 +37,14 @@ function useFormValidator() {
       validatorWithPasswordPromise
         .then((res) => {
           setErrorState(res);
-          setFields({ ...fields, [name]: { ...fields[name], isEmpty: null } });
+          setFields({ ...fields, [name]: { ...fields[name] } });
         })
         .catch((err) => setErrorState(err));
     } else {
       validatorPromise
         .then((res) => {
           setErrorState(res);
-          setFields({ ...fields, [name]: { ...fields[name], isEmpty: null } });
+          setFields({ ...fields, [name]: { ...fields[name] } });
         })
         .catch((err) => setErrorState(err));
     }

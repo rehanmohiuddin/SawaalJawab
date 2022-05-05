@@ -10,6 +10,7 @@ function Index({
   style = BUTTON.PRIMARY,
   linkTo = "/",
   children,
+  replace = false,
 }) {
   const getBtnType = {
     PRIMARY: "btn-primary",
@@ -24,7 +25,7 @@ function Index({
       </div>
     ),
     [BUTTON.LINK]: (
-      <Link className={getBtnType[style]} to={linkTo}>
+      <Link className={getBtnType[style]} to={linkTo} replace={replace}>
         {title}
       </Link>
     ),

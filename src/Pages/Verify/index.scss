@@ -1,0 +1,9 @@
+@use "../../styles/util.scss";
+@import "../../styles/variables.scss";
+
+.loader {
+  @extend .loader-lg;
+}
+.error-icon {
+  color: $red;
+}

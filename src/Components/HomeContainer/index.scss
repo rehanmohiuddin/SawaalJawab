@@ -3,5 +3,6 @@
 .container {
   @extend .flex-column;
   position: relative;
-  top: 13vh;
+  top: 15vh;
+  height: 85vh;
 }

@@ -3,7 +3,7 @@
 
 .login-container {
   @extend .flex-row;
-  height: 85vh;
+  height: 83vh;
   width: 100%;
 
   .login-left {
@@ -29,6 +29,7 @@
   .login-box {
     width: 50%;
     @extend .flex-column, .flex-justify-center;
+    margin-top: calc($spacing-unit * 2);
 
     background-color: $white;
     // box-shadow: 0.2rem 0.2rem 0.2rem 0.2rem $light-gray;

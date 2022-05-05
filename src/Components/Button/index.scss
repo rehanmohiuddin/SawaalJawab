@@ -23,5 +23,6 @@ div {
   }
   a {
     text-decoration: none;
+    @extend .padding-half;
   }
 }

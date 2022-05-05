@@ -5,7 +5,15 @@ import { BUTTON } from "../../Util/constants";
 import Loader from "../Loader";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const Index = ({ title, fields, onTextInput, submitCallBack, errorState }) => {
+const Index = ({
+  title,
+  fields,
+  onTextInput,
+  submitCallBack,
+  errorState,
+  loading,
+  formFor,
+}) => {
   return (
     <div className="form-container">
       <div className="form-title">{title}</div>
@@ -52,8 +60,8 @@ const Index = ({ title, fields, onTextInput, submitCallBack, errorState }) => {
           callBack={submitCallBack}
         >
           <div className="btn-submit-container">
-            <Loader />
-            Please Wait
+            {loading && <Loader />}
+            {loading ? "Please Wait" : formFor}
           </div>
         </Button>
       </div>
