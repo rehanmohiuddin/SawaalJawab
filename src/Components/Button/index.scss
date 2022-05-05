@@ -1,0 +1,18 @@
+@use "../../styles/util.scss";
+@import "../../styles/variables.scss";
+
+div {
+  .btn {
+    @extend .padding-full;
+    width: 100%;
+    cursor: pointer;
+  }
+  .btn-primary {
+    background-color: $light-blue;
+    color: $black;
+  }
+  .btn-outline {
+    background-color: $white;
+    border: 1px solid $light-blue;
+  }
+}

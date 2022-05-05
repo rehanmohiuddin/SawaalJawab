@@ -1,0 +1,34 @@
+@use "../../styles/util.scss";
+@import "../../styles/variables.scss";
+
+.form-container {
+  width: 100%;
+  @extend .flex-column, .flex-justify-center, .padding-full;
+  .input-container {
+    width: 100%;
+  }
+  input {
+    font-family: Poppins;
+    width: 100%;
+  }
+  fieldset:focus-within {
+    border: 1px solid $light-blue;
+  }
+  .form-title {
+    font-size: 2rem;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+  fieldset {
+    text-align: left;
+    border-radius: 0.2rem;
+    background-color: $white;
+    width: 80%;
+    legend {
+      margin-left: calc($spacing-unit * 1);
+    }
+  }
+  .btn-submit {
+    width: 50%;
+  }
+}
