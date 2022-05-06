@@ -2,20 +2,46 @@
 @import "../../styles/variables.scss";
 
 .login-container {
-  @extend .flex-column, .padding-top-1;
-  height: 100%;
-  width: 50%;
-  .login-box {
-    width: 80%;
-    @extend .flex-column;
+  @extend .flex-row;
+  height: 85vh;
+  width: 100%;
+
+  .login-left {
     background-color: $light-cream;
-    box-shadow: 0.2rem 0.2rem 0.2rem 0.2rem $light-gray;
+    height: 100%;
+    width: 50%;
+    @extend .flex-column, .flex-justify-center, .padding-bottom-1;
     img {
       width: calc($spacing-unit * 15);
     }
+    div {
+      font-size: larger;
+    }
+    .btn-primary {
+      width: 50%;
+      @extend .margin-top-1;
+    }
+    .readmore-btn {
+      @extend .flex-row, .flex-justify-center;
+      width: 50%;
+    }
   }
-  @media screen and (max-width: $medium) {
-    width: 100%;
+  .login-box {
+    width: 50%;
+    @extend .flex-column, .flex-justify-center;
+
+    background-color: $white;
+    // box-shadow: 0.2rem 0.2rem 0.2rem 0.2rem $light-gray;
+  }
+  .login-btn {
+    @extend .padding-full;
+  }
+}
+
+@media screen and (max-width: $medium) {
+  .login-container {
+    flex-direction: column;
+    .login-left,
     .login-box {
       width: 100%;
     }
