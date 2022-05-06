@@ -6,10 +6,10 @@ const login = async (payload) => {
   try {
     const resp = await AxiosInstance.post("/login", payload);
     return resp.status === 200
-      ? { ...responseObject, user: resp.data, isLoggedIn: true }
-      : { error: resp.data, isLoggedIn: false };
+      ? { ...responseObject, user: resp.data.message, isLoggedIn: true }
+      : { error: resp.data.message, isLoggedIn: false };
   } catch (e) {
-    return { error: e.toString(), isLoggedIn: false };
+    return { error: e.data.message, isLoggedIn: false };
   }
 };
 
@@ -18,9 +18,9 @@ const register = async (payload) => {
     const resp = await AxiosInstance.post("/register", payload);
     return resp.status === 200
       ? { ...responseObject, isEmailSent: true }
-      : { error: resp.data };
+      : { error: resp.data.message };
   } catch (e) {
-    return { error: e.toString() };
+    return { error: e.data.message };
   }
 };
 
@@ -31,9 +31,9 @@ const verifyOTP = async (payload) => {
     });
     return resp.status === 200
       ? { ...responseObject, success: true }
-      : { error: resp.data, success: false };
+      : { error: resp.data.message, success: false };
   } catch (e) {
-    return { error: e.toString(), success: false };
+    return { error: e.data.message, success: false };
   }
 };
 

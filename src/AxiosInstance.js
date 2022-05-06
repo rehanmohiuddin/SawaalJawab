@@ -6,11 +6,9 @@ const AxiosInstance = axios.create({
 
 AxiosInstance.interceptors.request.use(
   (response) => {
-    console.log({ response });
     return response;
   },
   (error) => {
-    console.log({ error });
     return Promise.reject(error);
   }
 );
@@ -20,8 +18,7 @@ AxiosInstance.interceptors.response.use(
     return response;
   },
   (error) => {
-    console.log({ error });
-    return Promise.reject(error);
+    return Promise.reject(error.response);
   }
 );
 

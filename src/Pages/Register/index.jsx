@@ -14,6 +14,7 @@ import {
 import { useAuth } from "../../context/Auth";
 import EmailSent from "../../Components/EmailSent";
 import AuthLeft from "../../Components/AuthLeft";
+import { useToast } from "../../context/Toast";
 
 function Index() {
   const [fields, setField] = useState({
@@ -90,11 +91,21 @@ function Index() {
     },
   });
   const [textInput, setFields, errorState, isFieldsEmpty] = useFormValidator();
-  const { loading, isEmailSent, authAction, dispatch } = useAuth();
+  const { loading, isEmailSent, authAction, error, dispatch } = useAuth();
+  const { toast } = useToast();
 
   useEffect(() => {
     setFields(fields);
   }, [fields]);
+
+  useEffect(() => {
+    error &&
+      toast.error({
+        message: error,
+        action: null,
+      });
+    return () => authAction.clearError();
+  }, [error]);
 
   const textFromForm = (name, value) => {
     setField({
@@ -103,13 +114,13 @@ function Index() {
     });
     textInput(name, value);
   };
+
   const submit = () => {
     const isEmpty = isFieldsEmpty();
     const payload = {};
     Object.keys(fields).forEach((key) => {
       payload[key] = fields[key].value;
     });
-    console.log(authAction);
     !errorState && !isEmpty ? authAction.Register(payload) : alert("failed");
   };
 
@@ -120,8 +131,6 @@ function Index() {
     });
     authAction.Register(payload);
   };
-
-  console.log({ loading });
 
   return (
     <HomeContainer>

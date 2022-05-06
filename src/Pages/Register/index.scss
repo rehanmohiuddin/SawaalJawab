@@ -23,7 +23,9 @@
     }
     .readmore-btn {
       @extend .flex-row, .flex-justify-center;
-      width: 50%;
+      .btn-primary {
+        width: calc($spacing-unit * 8);
+      }
     }
   }
   .login-box {

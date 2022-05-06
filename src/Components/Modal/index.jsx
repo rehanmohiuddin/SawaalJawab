@@ -5,13 +5,8 @@ import "./index.scss";
 
 const Modal = ({ children, trigger, header, title }) => {
   const [isOpen, setOpen] = useState(null);
-  const innerRef = useRef();
 
   const closeModal = () => setOpen(null);
-
-  useEffect(() => {
-    console.log(innerRef.current);
-  }, [innerRef]);
 
   return (
     <div>

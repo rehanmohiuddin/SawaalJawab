@@ -7,12 +7,22 @@ import {
   VERIFY_REQUEST,
   VERIFY_RESPONSE,
   TOGGLE_LOADER,
+  CLEAR_ERROR,
+  LOGOUT,
+  GET_USER,
 } from "../actions/Auth";
+import { LocalStorage } from "../Util/localStorage";
 
 export const authReducer = (state = loginInitialState, action) => {
   const { type, data, payload } = action;
 
   switch (type) {
+    case GET_USER:
+      const user = LocalStorage.getUser();
+      return {
+        ...state,
+        ...user,
+      };
     case TOGGLE_LOADER:
       return {
         loading: true,
@@ -22,12 +32,20 @@ export const authReducer = (state = loginInitialState, action) => {
         ...state,
         loading: true,
       };
+    case CLEAR_ERROR:
+      return {
+        ...state,
+        error: null,
+      };
     case LOGIN_RESPONSE:
+      data.user &&
+        LocalStorage.setUser({ ...data.user.user, token: data.user.token });
       return {
         ...state,
         user: data.user,
         isLoggedIn: data.isLoggedIn,
         error: data.error,
+        loading: false,
       };
     case REGISTER_REQUEST:
       return {
@@ -59,6 +77,11 @@ export const authReducer = (state = loginInitialState, action) => {
           success: data.success,
           error: data.error,
         },
+      };
+    case LOGOUT:
+      return {
+        ...loginInitialState,
+        isLoggedIn: null,
       };
 
     default:

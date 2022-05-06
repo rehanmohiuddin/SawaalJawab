@@ -1,12 +1,26 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./index.scss";
 import Logo from "../../assets/SawaalJawab -mailer.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
+import { useAuth } from "../../context/Auth";
+import { LocalStorage } from "../../Util/localStorage";
 
 function Header() {
   const [showMobNav, setMobNav] = useState(null);
+  const { user, isLoggedIn, authAction } = useAuth();
+  const navigate = useNavigate();
+
+  const loginAction = () => {
+    authAction.logOut();
+    navigate("/login", { replace: true });
+  };
+
+  useEffect(() => {
+    authAction.getAuth();
+  }, []);
+
   const options = [
     {
       name: "Home",
@@ -17,8 +31,8 @@ function Header() {
       route: "/create/quiz",
     },
     {
-      name: "Log Out",
-      action: null,
+      name: isLoggedIn ? "Log Out" : "Log In",
+      action: loginAction,
     },
   ];
 

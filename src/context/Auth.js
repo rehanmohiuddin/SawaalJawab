@@ -6,9 +6,13 @@ import {
   REGISTER_RESPONSE,
   TOGGLE_LOADER,
   VERIFY_RESPONSE,
+  CLEAR_ERROR,
+  LOGOUT,
+  GET_USER,
 } from "../actions/Auth";
 import { authReducer } from "../reducers/Auth";
 import { login, register, verifyOTP } from "../services/auth";
+import { LocalStorage } from "../Util/localStorage";
 
 const AuthContext = createContext(loginInitialState);
 
@@ -35,6 +39,15 @@ const AuthProvider = ({ children }) => {
         data: { ...(await verifyOTP(payload)) },
       });
     },
+    clearError: () =>
+      dispatch({
+        type: CLEAR_ERROR,
+      }),
+    logOut: () => {
+      dispatch({ type: LOGOUT });
+      LocalStorage.deleteUser();
+    },
+    getAuth: () => dispatch({ type: GET_USER }),
   };
 
   return (

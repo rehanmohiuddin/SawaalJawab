@@ -10,6 +10,7 @@ import { faEnvelopeSquare, faKey } from "@fortawesome/free-solid-svg-icons";
 import { useAuth } from "../../context/Auth";
 import { Navigate } from "react-router-dom";
 import AuthLeft from "../../Components/AuthLeft";
+import { useToast } from "../../context/Toast";
 
 function Index() {
   const [fields, setField] = useState({
@@ -42,11 +43,26 @@ function Index() {
     },
   });
   const [textInput, setFields, errorState, isFieldsEmpty] = useFormValidator();
-  const { loading, authAction, isLoggedIn } = useAuth();
+  const { loading, authAction, error, isLoggedIn } = useAuth();
+  const { toast } = useToast();
 
   useEffect(() => {
     setFields(fields);
   }, [fields]);
+
+  useEffect(() => {
+    error &&
+      toast.error({
+        message: error,
+        action: null,
+      });
+    isLoggedIn &&
+      toast.success({
+        message: "Login Success",
+        action: null,
+      });
+    return () => authAction.clearError();
+  }, [error, isLoggedIn]);
 
   const textFromForm = (name, value) => {
     setField({ ...fields, [name]: { ...fields[name], value: value } });
