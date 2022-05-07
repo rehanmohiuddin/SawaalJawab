@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { forwardRef, useEffect, useRef, useState } from "react";
 import "./index.scss";
 
-const Modal = ({ children, trigger, header, title }) => {
+const Modal = ({ children, trigger, header }) => {
   const [isOpen, setOpen] = useState(null);
 
   const closeModal = () => setOpen(null);
@@ -12,12 +12,17 @@ const Modal = ({ children, trigger, header, title }) => {
     <div>
       <div onClick={() => setOpen(true)}> {trigger}</div>
       {isOpen && (
-        <div onClick={closeModal} id="kash-modal" class="kash-modal-container">
-          <div onClick={(e) => e.stopPropagation()} class="kash-modal">
+        <div
+          onClick={closeModal}
+          id="kash-modal"
+          className="kash-modal-container"
+        >
+          <div onClick={(e) => e.stopPropagation()} className="kash-modal">
             <div className="modal-header">
               <div className="modal-header-title ">{header}</div>
               <FontAwesomeIcon onClick={closeModal} icon={faClose} size="2x" />
             </div>
+
             <div className="modal-container"> {children} </div>
           </div>
         </div>

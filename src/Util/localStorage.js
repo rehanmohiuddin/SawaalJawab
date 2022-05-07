@@ -1,6 +1,8 @@
 const LocalStorage = {
-  getUser: () => {
+  user: null,
+  getUser: function () {
     const rawUser = localStorage.getItem("user");
+    this.user = JSON.parse(rawUser);
     return rawUser ? { ...JSON.parse(rawUser), isLoggedIn: true } : null;
   },
   getToken: function () {

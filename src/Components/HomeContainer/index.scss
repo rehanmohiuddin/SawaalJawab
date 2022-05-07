@@ -2,10 +2,15 @@
 
 .container {
   position: relative;
-  @extend .flex-row, .padding-full;
+  @extend .flex-row;
   align-items: baseline;
-  top: 7vh;
-  height: 88vh;
-  width: 85%;
+  top: 6vh;
+  width: 90%;
   left: 10vw;
+}
+.home-root-container {
+  @extend .flex-row;
+  top: 7vh;
+  height: 86vh;
+  position: relative;
 }
