@@ -24,7 +24,7 @@
     width: 100%;
   }
   .input:focus-within {
-    border: 1px solid $light-blue;
+    border: 1px solid $dark-gray;
   }
   input {
     font-family: Poppins;
@@ -63,13 +63,13 @@
   }
   .btn-submit-container {
     @extend .flex-row, .flex-justify-center, .gap-half;
-    color: $black;
+    color: $white;
   }
   .loader {
     height: 0.5rem;
     width: 0.5rem;
     border: 10px solid $pale-gray;
-    border-top: 10px solid $light-blue;
+    border-top: 10px solid $dark-gray;
   }
   @media screen and (max-width: $medium) {
     .kash-container > div {

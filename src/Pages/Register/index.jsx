@@ -6,6 +6,7 @@ import "./index.scss";
 import useFormValidator from "../../hooks/useFormValidator";
 import Button from "../../Components/Button";
 import { BUTTON } from "../../Util/constants";
+import Header from "../../Components/Header";
 import {
   faEnvelopeSquare,
   faKey,
@@ -133,7 +134,8 @@ function Index() {
   };
 
   return (
-    <HomeContainer>
+    <div className="auth-container" >
+      <Header />
       {!isEmailSent ? (
         <div className="login-container">
           <AuthLeft />
@@ -164,7 +166,7 @@ function Index() {
           loading={loading}
         />
       )}
-    </HomeContainer>
+    </div>
   );
 }
 

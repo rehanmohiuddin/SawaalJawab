@@ -1,8 +1,11 @@
 @use "../../styles/util.scss";
 
 .container {
-  @extend .flex-column;
   position: relative;
-  top: 15vh;
-  height: 85vh;
+  @extend .flex-row, .padding-full;
+  align-items: baseline;
+  top: 7vh;
+  height: 88vh;
+  width: 85%;
+  left: 10vw;
 }

@@ -5,12 +5,14 @@ import "./index.scss";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import ContextProvider from "./context";
+import ToastContainer from "../src/Components/Toast";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Router>
     <ContextProvider>
       <App />
+      <ToastContainer />
     </ContextProvider>
   </Router>
 );

@@ -11,6 +11,7 @@ import { useAuth } from "../../context/Auth";
 import { Navigate } from "react-router-dom";
 import AuthLeft from "../../Components/AuthLeft";
 import { useToast } from "../../context/Toast";
+import Header from "../../Components/Header";
 
 function Index() {
   const [fields, setField] = useState({
@@ -79,7 +80,8 @@ function Index() {
   };
 
   return (
-    <HomeContainer>
+    <div className="auth-container">
+      <Header />
       {isLoggedIn && <Navigate to={"/"} replace />}
       <div className="login-container">
         <AuthLeft />
@@ -103,7 +105,7 @@ function Index() {
           </div>
         </div>
       </div>
-    </HomeContainer>
+    </div>
   );
 }
 

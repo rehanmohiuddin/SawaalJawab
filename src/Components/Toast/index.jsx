@@ -19,24 +19,28 @@ function Index() {
   }, []);
 
   return (
-    <div
-      className={`kash-snackbar kash-flex kash-align-center kash-bg-gray ${
-        messageType === ERROR && "error"
-      }`}
-    >
-      {message} !
-      <div className="kash-flex kash-align-center actions">
-        {action && (
-          <Button
-            type={BUTTON.BUTTON}
-            style={BUTTON.PRIMARY}
-            title={"OK"}
-            callBack={action.call}
-          />
-        )}
-        <FontAwesomeIcon icon={faTimesCircle} onClick={toast.close} />
-      </div>
-    </div>
+    <>
+      {message && (
+        <div
+          className={`kash-snackbar kash-flex kash-align-center kash-bg-gray ${
+            messageType === ERROR && "error"
+          }`}
+        >
+          {message} !
+          <div className="kash-flex kash-align-center actions">
+            {action && (
+              <Button
+                type={BUTTON.BUTTON}
+                style={BUTTON.PRIMARY}
+                title={"OK"}
+                callBack={action.call}
+              />
+            )}
+            <FontAwesomeIcon icon={faTimesCircle} onClick={toast.close} />
+          </div>
+        </div>
+      )}
+    </>
   );
 }
 
