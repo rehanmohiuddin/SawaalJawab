@@ -1,7 +1,9 @@
 @use "../../styles/util.scss";
 @import "../../styles/variables.scss";
 
-.home-container {
-  @extend .flex-row;
-  width: 100%;
+.loader {
+  @extend .loader-lg;
+}
+.error-icon {
+  color: $red;
 }

@@ -4,11 +4,16 @@ import { BrowserRouter as Router } from "react-router-dom";
 import "./index.scss";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+import ContextProvider from "./context";
+import ToastContainer from "../src/Components/Toast";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Router>
-    <App />
+    <ContextProvider>
+      <App />
+      <ToastContainer />
+    </ContextProvider>
   </Router>
 );
 

@@ -6,11 +6,16 @@ import "./index.scss";
 import useFormValidator from "../../hooks/useFormValidator";
 import Button from "../../Components/Button";
 import { BUTTON } from "../../Util/constants";
+import Header from "../../Components/Header";
 import {
   faEnvelopeSquare,
   faKey,
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
+import { useAuth } from "../../context/Auth";
+import EmailSent from "../../Components/EmailSent";
+import AuthLeft from "../../Components/AuthLeft";
+import { useToast } from "../../context/Toast";
 
 function Index() {
   const [fields, setField] = useState({
@@ -21,7 +26,7 @@ function Index() {
       placeholder: "Enter First Name",
       tagName: "firstName",
       required: true,
-      isEmpty: true,
+
       icon: faUser,
       constraints: {
         regEx: /(.*[a-z]){3}/i,
@@ -35,7 +40,7 @@ function Index() {
       placeholder: "Enter Last Name",
       tagName: "lastName",
       required: true,
-      isEmpty: true,
+
       icon: faUser,
       constraints: {
         regEx: /(.*[a-z]){3}/i,
@@ -54,7 +59,7 @@ function Index() {
           /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
         msg: "Email is Not Valid",
       },
-      isEmpty: true,
+
       icon: faEnvelopeSquare,
     },
     password: {
@@ -68,7 +73,7 @@ function Index() {
         regEx: /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@$!%*#?&^_-]).{8,}/,
         msg: "Password is Not Valid",
       },
-      isEmpty: true,
+
       icon: faKey,
     },
     confirmPassword: {
@@ -82,56 +87,86 @@ function Index() {
         regEx: /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@$!%*#?&^_-]).{8,}/,
         msg: "Password Not Valid",
       },
-      isEmpty: true,
+
       icon: faKey,
     },
   });
   const [textInput, setFields, errorState, isFieldsEmpty] = useFormValidator();
+  const { loading, isEmailSent, authAction, error, dispatch } = useAuth();
+  const { toast } = useToast();
 
   useEffect(() => {
     setFields(fields);
   }, [fields]);
 
+  useEffect(() => {
+    error &&
+      toast.error({
+        message: error,
+        action: null,
+      });
+    return () => authAction.clearError();
+  }, [error]);
+
   const textFromForm = (name, value) => {
-    setField({ ...fields, [name]: { ...fields[name], value: value } });
+    setField({
+      ...fields,
+      [name]: { ...fields[name], value: value, isEmpty: null },
+    });
     textInput(name, value);
   };
+
   const submit = () => {
     const isEmpty = isFieldsEmpty();
-    !errorState && !isEmpty ? alert("success") : alert("failed");
+    const payload = {};
+    Object.keys(fields).forEach((key) => {
+      payload[key] = fields[key].value;
+    });
+    !errorState && !isEmpty ? authAction.Register(payload) : alert("failed");
+  };
+
+  const resendEmail = () => {
+    const payload = {};
+    Object.keys(fields).forEach((key) => {
+      payload[key] = fields[key].value;
+    });
+    authAction.Register(payload);
   };
 
   return (
-    <HomeContainer>
-      <div className="login-container">
-        <div className="login-left">
-          <img src={Logo} />
-          <div>Create, Host & Give Live Available Quizes</div>
-          <Button
-            title={" Login"}
-            style={BUTTON.PRIMARY}
-            type={BUTTON.BUTTON}
-            linkTo={"/login"}
-          />
-        </div>
-        <div className="login-box">
-          <Form
-            fields={fields}
-            onTextInput={textFromForm}
-            submitCallBack={submit}
-            errorState={errorState}
-          />
-          <div className="login-btn">
-            <Button
-              title={" Already Have An Account ?"}
-              style={BUTTON.LINK}
-              type={BUTTON.LINK}
-              linkTo={"/login"}
+    <div className="auth-container" >
+      <Header />
+      {!isEmailSent ? (
+        <div className="login-container">
+          <AuthLeft />
+          <div className="login-box">
+            <Form
+              title={"Join Now"}
+              fields={fields}
+              onTextInput={textFromForm}
+              submitCallBack={submit}
+              errorState={errorState}
+              loading={loading}
+              formFor={"Register"}
             />
+            <div className="login-btn">
+              <Button
+                title={" Already Have An Account ?"}
+                style={BUTTON.LINK}
+                type={BUTTON.LINK}
+                linkTo={"/login"}
+              />
+            </div>
           </div>
         </div>
-      </div>
-    </HomeContainer>
+      ) : (
+        <EmailSent
+          email={fields.email.value}
+          resend={resendEmail}
+          loading={loading}
+        />
+      )}
+    </div>
   );
 }
 

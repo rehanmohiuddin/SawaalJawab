@@ -4,16 +4,21 @@
 div {
   .btn {
     @extend .padding-half;
-    width: 100%;
     cursor: pointer;
+    white-space: nowrap;
   }
   .btn-primary {
-    background-color: $light-blue;
-    color: $black;
+    background-color: $dark-gray;
+    color: $white;
   }
   .btn-outline {
     background-color: $white;
-    border: 1px solid $light-blue;
+    border: 1px solid $dark-gray;
+  }
+  .btn-outline:hover {
+    background-color: $dark-gray;
+    border: 1px solid $white;
+    color: $white;
   }
   .btn-link {
     color: $black;
@@ -23,5 +28,6 @@ div {
   }
   a {
     text-decoration: none;
+    @extend .padding-half;
   }
 }
