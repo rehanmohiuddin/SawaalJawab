@@ -1,9 +1,11 @@
 import { TOGGLE_LOADER } from "../actions/Auth";
 import {
   CREATE_QUIZ_RESPONSE,
+  GET_CREATED_QUIZ,
   GET_QUIZES_RESPONSE,
   GET_QUIZ_BY_CATEGORY,
   GET_QUIZ_RESPONSE,
+  GET_QUIZ_SUBMISSIONS,
   initialQuizState,
   SUBMIT_QUIZ_RESPONSE,
 } from "../actions/Quiz";
@@ -46,6 +48,20 @@ export const quizReducer = (state = initialQuizState, action) => {
       return {
         ...state,
         submittedQuiz: data.submittedQuiz,
+      };
+    case GET_CREATED_QUIZ:
+      return {
+        ...state,
+        quizes: data.quizes,
+        error: data.error,
+        loading: false,
+      };
+    case GET_QUIZ_SUBMISSIONS:
+      return {
+        ...state,
+        submissions: data.submissions,
+        error: data.error,
+        loading: false,
       };
     default:
       return {

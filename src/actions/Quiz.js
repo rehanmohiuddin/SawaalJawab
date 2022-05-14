@@ -3,6 +3,8 @@ const CREATE_QUIZ_RESPONSE = "CREATE_QUIZ_RESPONSE";
 const GET_QUIZ_RESPONSE = "GET_QUIZ_RESPONSE";
 const SUBMIT_QUIZ_RESPONSE = "SUBMIT_QUIZ_RESPONSE";
 const GET_QUIZ_BY_CATEGORY = "GET_QUIZ_BY_CATEGORY";
+const GET_CREATED_QUIZ = "GET_CREATED_QUIZ";
+const GET_QUIZ_SUBMISSIONS = "GET_QUIZ_SUBMISSIONS";
 
 const TOGGLE_LOADER = "TOGGLE_LOADER";
 
@@ -13,6 +15,7 @@ const initialQuizState = {
   quizDetail: null,
   quizToFetch: null,
   submittedQuiz: null,
+  submissions: [],
 };
 
 export {
@@ -23,4 +26,6 @@ export {
   GET_QUIZ_RESPONSE,
   SUBMIT_QUIZ_RESPONSE,
   GET_QUIZ_BY_CATEGORY,
+  GET_CREATED_QUIZ,
+  GET_QUIZ_SUBMISSIONS,
 };

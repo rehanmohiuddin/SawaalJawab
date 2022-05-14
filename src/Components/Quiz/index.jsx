@@ -11,6 +11,7 @@ import {
 import { parseDeadline } from "../../Util/dateParser";
 import { BUTTON } from "../../Util/constants";
 import Category from "../Category";
+import { useAuth } from "../../context/Auth";
 
 function Index({
   QuizCover,
@@ -28,6 +29,8 @@ function Index({
     maxScore = 0,
     questions = [],
   } = quizDetail ?? {};
+  const { user } = useAuth();
+  const { firstName = "", lastName = "" } = user ?? {};
 
   return (
     <div className="quiz-container">
@@ -100,7 +103,7 @@ function Index({
           </div>
           <div className="created-by">
             <FontAwesomeIcon icon={faUserCircle} />
-            Rehan
+            {`${firstName} ${lastName}`}
           </div>
         </div>
       </div>

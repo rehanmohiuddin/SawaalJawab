@@ -47,7 +47,11 @@ const AuthProvider = ({ children }) => {
       dispatch({ type: LOGOUT });
       LocalStorage.deleteUser();
     },
-    getAuth: () => dispatch({ type: GET_USER }),
+    getAuth: function () {
+      const user = LocalStorage.getUser();
+      dispatch({ type: GET_USER, data: user });
+      return user;
+    },
   };
 
   return (

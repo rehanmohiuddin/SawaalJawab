@@ -13,7 +13,6 @@ const Modal = ({ children, trigger, header, Open, modelClose = () => {} }) => {
   const open = () => setOpen(true);
 
   useEffect(() => {
-    !Open && closeModal();
     Open && open();
     return () => {
       modelClose();

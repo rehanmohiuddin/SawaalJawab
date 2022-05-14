@@ -11,6 +11,7 @@ import Modal from "../../Components/Modal";
 import { faTwitter } from "@fortawesome/free-brands-svg-icons";
 import { useToast } from "../../context/Toast";
 import Quiz from "../../Components/Quiz";
+import { useAuth } from "../../context/Auth";
 
 function Index() {
   const [quiz, setQuiz] = useState({
@@ -22,6 +23,7 @@ function Index() {
     deadline: null,
   });
   const { quizAction } = useQuiz();
+  const { user } = useAuth();
 
   const addQuestion = () => {
     setQuiz({
@@ -105,7 +107,7 @@ function Index() {
   const handleChange = (e) => textInputMap[e.target.id](e);
 
   const createQuiz = () => {
-    quizAction.CreateQuiz(quiz);
+    quizAction.CreateQuiz({ ...quiz, quizCreator: user._id });
   };
 
   return (

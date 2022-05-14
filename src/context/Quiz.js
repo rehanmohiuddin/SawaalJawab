@@ -8,6 +8,8 @@ import {
   GET_QUIZ_RESPONSE,
   SUBMIT_QUIZ_RESPONSE,
   GET_QUIZ_BY_CATEGORY,
+  GET_CREATED_QUIZ,
+  GET_QUIZ_SUBMISSIONS,
 } from "../actions/Quiz";
 import { quizReducer } from "../reducers/Quiz";
 import {
@@ -15,6 +17,8 @@ import {
   getAllQuiz,
   getQuiz,
   getQuizByCategory,
+  getQuizByUser,
+  getQuizSubmissions,
   submitQuiz,
 } from "../services/quiz";
 
@@ -61,6 +65,20 @@ const QuizProvider = ({ children }) => {
       dispatch({
         type: GET_QUIZ_BY_CATEGORY,
         data: { ...(await getQuizByCategory(payload)) },
+      });
+    },
+    GetCreatedQuiz: async function (payload) {
+      this.loader();
+      dispatch({
+        type: GET_CREATED_QUIZ,
+        data: { ...(await getQuizByUser(payload)) },
+      });
+    },
+    GetQuizSubmissions: async function (payload) {
+      this.loader();
+      dispatch({
+        type: GET_QUIZ_SUBMISSIONS,
+        data: { ...(await getQuizSubmissions(payload)) },
       });
     },
   };

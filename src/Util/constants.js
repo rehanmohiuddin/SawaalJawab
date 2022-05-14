@@ -29,4 +29,9 @@ const categories = [
   { name: "Others", icon: faInfo },
 ];
 
-export { BUTTON, categories };
+const status = {
+  completed: "COMPLETED",
+  incomplete: "INCOMPLETE",
+};
+
+export { BUTTON, categories, status };
