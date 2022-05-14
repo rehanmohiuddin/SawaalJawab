@@ -4,16 +4,16 @@ import React, { forwardRef, useEffect, useRef, useState } from "react";
 import "./index.scss";
 
 const Modal = ({ children, trigger, header, Open, modelClose = () => {} }) => {
-  const [isOpen, setOpen] = useState(null);
-
+  const [isOpen, setOpen] = useState(false);
   const closeModal = () => {
-    setOpen(null);
+    setOpen(false);
     modelClose();
   };
 
   const open = () => setOpen(true);
 
   useEffect(() => {
+    !Open && closeModal();
     Open && open();
     return () => {
       modelClose();
@@ -22,7 +22,7 @@ const Modal = ({ children, trigger, header, Open, modelClose = () => {} }) => {
 
   return (
     <div>
-      <div onClick={() => setOpen(true)}> {trigger}</div>
+      <div onClick={() => setOpen(true)}>{trigger}</div>
       {isOpen && (
         <div
           onClick={closeModal}

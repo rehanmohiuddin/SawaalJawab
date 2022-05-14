@@ -50,4 +50,17 @@ const submitQuiz = async (payload) => {
   }
 };
 
-export { getAllQuiz, getQuiz, createQuiz, submitQuiz };
+const getQuizByCategory = async (payload) => {
+  try {
+    const resp = await AxiosInstance.get(
+      "/quiz/category?categoryType=" + payload
+    );
+    return resp.status === 200
+      ? { ...responseObject, quizes: resp.data.message }
+      : { ...responseObject, error: resp.data.message };
+  } catch (e) {
+    return { ...responseObject, error: e.data.message };
+  }
+};
+
+export { getAllQuiz, getQuiz, createQuiz, submitQuiz, getQuizByCategory };

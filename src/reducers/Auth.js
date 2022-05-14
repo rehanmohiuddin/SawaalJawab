@@ -21,7 +21,7 @@ export const authReducer = (state = loginInitialState, action) => {
       const user = LocalStorage.getUser();
       return {
         ...state,
-        ...user,
+        user: user,
       };
     case TOGGLE_LOADER:
       return {

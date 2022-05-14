@@ -18,7 +18,7 @@ function Index() {
     questions: [],
     solutions: [],
     maxScore: 0,
-    category: null,
+    category: "OTHERS",
     deadline: null,
   });
   const { quizAction } = useQuiz();
@@ -77,7 +77,7 @@ function Index() {
     category: (e) => {
       setQuiz((_quiz) => ({
         ..._quiz,
-        category: e.target.value.name,
+        category: e.target.value.name.toUpperCase(),
       }));
     },
     deadline: (e) => {

@@ -7,9 +7,16 @@ import {
   TOGGLE_LOADER,
   GET_QUIZ_RESPONSE,
   SUBMIT_QUIZ_RESPONSE,
+  GET_QUIZ_BY_CATEGORY,
 } from "../actions/Quiz";
 import { quizReducer } from "../reducers/Quiz";
-import { createQuiz, getAllQuiz, getQuiz, submitQuiz } from "../services/quiz";
+import {
+  createQuiz,
+  getAllQuiz,
+  getQuiz,
+  getQuizByCategory,
+  submitQuiz,
+} from "../services/quiz";
 
 const QuizContext = createContext(initialQuizState);
 
@@ -47,6 +54,13 @@ const QuizProvider = ({ children }) => {
       dispatch({
         type: SUBMIT_QUIZ_RESPONSE,
         data: { ...(await submitQuiz(payload)) },
+      });
+    },
+    GetQuizByCategory: async function (payload) {
+      this.loader();
+      dispatch({
+        type: GET_QUIZ_BY_CATEGORY,
+        data: { ...(await getQuizByCategory(payload)) },
       });
     },
   };

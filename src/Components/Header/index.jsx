@@ -16,12 +16,15 @@ import { categories, BUTTON } from "../../Util/constants";
 import Button from "../Button";
 import Logo from "../../assets/SawaalJawab -mailer.png";
 import Category from "../Category";
+import { useQuiz } from "../../context/Quiz";
 
 function Header() {
   const [showMobNav, setMobNav] = useState(null);
   const { user, isLoggedIn, authAction } = useAuth();
   const [category, setCategory] = useState(categories[0].name);
   const navigate = useNavigate();
+  const { quizAction } = useQuiz();
+  const { firstName = "", lastName = "", email = "" } = user ?? {};
 
   const loginAction = () => {
     authAction.logOut();
@@ -31,21 +34,6 @@ function Header() {
   useEffect(() => {
     authAction.getAuth();
   }, []);
-
-  const options = [
-    // {
-    //   name: "Home",
-    //   route: "/",
-    // },
-    // {
-    //   name: "Create Quiz",
-    //   route: "/create/quiz",
-    // },
-    {
-      name: isLoggedIn ? "Log Out" : "Log In",
-      action: loginAction,
-    },
-  ];
 
   const renderHeaderBody = () => (
     <>
@@ -59,19 +47,27 @@ function Header() {
       </Button>
       <div className="home-header">
         <Category
+          selectCategory={(e) => {
+            quizAction.GetQuizByCategory(e.target.value.name.toUpperCase());
+            setCategory(e.target.value.name);
+          }}
           trigger={
-            <Button
-              title={"Create Quiz"}
-              style={BUTTON.OUTLINE}
-              type={BUTTON.BUTTON}
-            >
+            <Button style={BUTTON.OUTLINE} type={BUTTON.BUTTON}>
               <FontAwesomeIcon icon={faFilter} />
               <span> {category}</span>
             </Button>
           }
         />
       </div>
-      <FontAwesomeIcon className="avatar-icon" icon={faUserCircle} size="2x" />
+      <div className="avatar-icon">
+        <FontAwesomeIcon icon={faUserCircle} size="2x" />
+        <div className="profile">
+          <div>
+            {firstName} {lastName}
+          </div>
+          <div>{email}</div>
+        </div>
+      </div>
     </>
   );
 
