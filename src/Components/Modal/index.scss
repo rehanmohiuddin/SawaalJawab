@@ -1,4 +1,6 @@
 @use "../../styles/util.scss";
+@import "../../styles/variables.scss";
+
 #kash-modal {
   display: flex;
   cursor: pointer;
@@ -7,7 +9,9 @@
   }
 }
 .kash-modal {
-  @extend .flex-row, .padding-full;
+  color: $black;
+  @extend .flex-row, .padding-half;
+
   top: 0;
   border-radius: 1rem;
   overflow-y: scroll;
@@ -17,11 +21,14 @@
     @extend .flex-row, .flex-space-between;
     .modal-header-title {
       margin: 0;
-      font-size: 1.6rem;
+      font-size: 1.4rem;
+      @extend .padding-half;
+      text-transform: uppercase;
+      font-family: 500;
     }
   }
   .modal-container {
-    @extend .padding-full;
+    @extend .padding-half;
     width: 90%;
   }
 }

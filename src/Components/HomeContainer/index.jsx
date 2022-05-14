@@ -10,10 +10,12 @@ function Index({ children }) {
   return (
     <>
       <Header />
-      <Nav />
-      <div className="container">{children}</div>
+      <div className="home-root-container">
+        <Nav />
+        <div className="container">{children}</div>
 
-      {message && <ToastContainer />}
+        {message && <ToastContainer />}
+      </div>
     </>
   );
 }
