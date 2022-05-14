@@ -15,6 +15,7 @@ import { LocalStorage } from "../../Util/localStorage";
 import { categories, BUTTON } from "../../Util/constants";
 import Button from "../Button";
 import Logo from "../../assets/SawaalJawab -mailer.png";
+import Category from "../Category";
 
 function Header() {
   const [showMobNav, setMobNav] = useState(null);
@@ -46,44 +47,30 @@ function Header() {
     },
   ];
 
-  const Category = () => (
-    <div className="home-header">
-      <Modal
-        header={"Select Categories"}
-        trigger={
-          <Button
-            title={"Create Quiz"}
-            style={BUTTON.OUTLINE}
-            type={BUTTON.BUTTON}
-          >
-            <FontAwesomeIcon icon={faFilter} />
-            <span> {category}</span>
-          </Button>
-        }
-      >
-        <ul class="list">
-          {categories.map((_category) => (
-            <li>
-              <FontAwesomeIcon icon={_category.icon} />
-              {_category.name}
-            </li>
-          ))}
-        </ul>
-      </Modal>
-    </div>
-  );
-
   const renderHeaderBody = () => (
     <>
       <div className="search-continer">
         <FontAwesomeIcon icon={faSearch} />
         <input placeholder="Search By Name" />
       </div>
-      <Button title={"Create Quiz"} style={BUTTON.OUTLINE} type={BUTTON.BUTTON}>
+      <Button style={BUTTON.OUTLINE} type={BUTTON.LINK} linkTo={"/quiz/create"}>
         <FontAwesomeIcon icon={faAdd} />
         <span>Create Quiz</span>
       </Button>
-      <Category />
+      <div className="home-header">
+        <Category
+          trigger={
+            <Button
+              title={"Create Quiz"}
+              style={BUTTON.OUTLINE}
+              type={BUTTON.BUTTON}
+            >
+              <FontAwesomeIcon icon={faFilter} />
+              <span> {category}</span>
+            </Button>
+          }
+        />
+      </div>
       <FontAwesomeIcon className="avatar-icon" icon={faUserCircle} size="2x" />
     </>
   );

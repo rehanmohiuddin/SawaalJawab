@@ -39,4 +39,15 @@ const createQuiz = async (payload) => {
   }
 };
 
-export { getAllQuiz, getQuiz, createQuiz };
+const submitQuiz = async (payload) => {
+  try {
+    const resp = await AxiosInstance.post("/quiz/submit", payload);
+    return resp.status === 200
+      ? { ...responseObject, submittedQuiz: resp.data.message }
+      : { ...responseObject, error: resp.data.message };
+  } catch (e) {
+    return { ...responseObject, error: e.data.message };
+  }
+};
+
+export { getAllQuiz, getQuiz, createQuiz, submitQuiz };

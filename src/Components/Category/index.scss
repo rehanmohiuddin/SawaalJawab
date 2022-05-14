@@ -1,0 +1,12 @@
+@use "../../styles/util.scss";
+@import "../../styles/variables.scss";
+
+.list {
+  @extend .flex-column, .gap-1, .flex-start;
+  align-items: flex-start;
+  li {
+    list-style: none;
+    white-space: nowrap;
+    @extend .flex-row, .gap-1;
+  }
+}

@@ -7,7 +7,7 @@ const AxiosInstance = axios.create({
 
 AxiosInstance.interceptors.request.use(
   (request) => {
-    if (request.method === "get") {
+    if (LocalStorage.getToken()) {
       request.headers["Authorization"] = "Bearer " + LocalStorage.getToken();
     }
     return request;

@@ -2,11 +2,10 @@
 
 .container {
   position: relative;
-  @extend .flex-row;
   align-items: baseline;
   top: 6vh;
   width: 90%;
-  left: 10vw;
+  left: 8vw;
 }
 .home-root-container {
   @extend .flex-row;
