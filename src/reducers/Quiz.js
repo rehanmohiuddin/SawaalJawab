@@ -4,6 +4,7 @@ import {
   GET_QUIZES_RESPONSE,
   GET_QUIZ_RESPONSE,
   initialQuizState,
+  SUBMIT_QUIZ_RESPONSE,
 } from "../actions/Quiz";
 
 export const quizReducer = (state = initialQuizState, action) => {
@@ -20,6 +21,7 @@ export const quizReducer = (state = initialQuizState, action) => {
         loading: false,
         quizes: data.quizes,
         error: data.error,
+        submittedQuiz: null,
       };
     case CREATE_QUIZ_RESPONSE:
       return {
@@ -31,6 +33,11 @@ export const quizReducer = (state = initialQuizState, action) => {
         ...state,
         loading: false,
         quizDetail: data.quizDetail,
+      };
+    case SUBMIT_QUIZ_RESPONSE:
+      return {
+        ...state,
+        submittedQuiz: data.submittedQuiz,
       };
     default:
       return {

@@ -1,0 +1,48 @@
+@use "../../styles/util.scss";
+@import "../../styles/variables.scss";
+@import "../../Components/Quiz/index.scss";
+
+.quiz-actions {
+  @extend .flex-row, .padding-full, .gap-1, .flex-end;
+  width: 75%;
+}
+.modal-container {
+  .result-container {
+    @extend .padding-full, .quiz-box-shadow;
+    background-color: $dark-gray;
+    border-radius: 1rem;
+    .share-score {
+      @extend .flex-row, .flex-end;
+      color: $white;
+    }
+    .quiz-score {
+      @extend .flex-column;
+      align-items: flex-start;
+      font-weight: 600;
+      line-height: calc($spacing-unit * 2.2);
+    }
+    .quiz-score > :nth-child(1) {
+      font-size: calc($spacing-unit * 1.2);
+      color: $light-gray;
+    }
+    .quiz-score > :nth-child(2) {
+      font-size: calc($spacing-unit * 1.4);
+      margin-left: calc($spacing-unit * 0.3);
+      color: $white;
+      span {
+        color: $light-gray;
+      }
+    }
+  }
+}
+.close-btn {
+  @extend .flex-row, .flex-end, .padding-full;
+}
+.score-card {
+  @extend .padding-half;
+  font-size: calc($spacing-unit * 1.5);
+  color: $light-gray;
+  font-weight: 600;
+  text-align: center;
+  padding-top: 0;
+}

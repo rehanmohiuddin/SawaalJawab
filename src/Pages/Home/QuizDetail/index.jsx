@@ -6,19 +6,28 @@ import { parseDeadline } from "../../../Util/dateParser";
 import "./index.scss";
 import Button from "../../../Components/Button";
 import { BUTTON } from "../../../Util/constants";
+import { useNavigate } from "react-router-dom";
 
 function Index({ quiz_id }) {
   const { quizDetail, quizAction } = useQuiz();
+  const navigate = useNavigate();
+  const {
+    _id = "",
+    questions = [],
+    maxScore = 0,
+    deadline = null,
+  } = quizDetail ? quizDetail : {};
+
   useEffect(() => {
     quizAction.GetQuiz({ quiz_id: quiz_id });
   }, []);
 
   const sentences = [
-    `The Maximum Score is ${quizDetail.maxScore}`,
-    `There will be ${quizDetail.questions.length} Questions
+    `The Maximum Score is ${maxScore}`,
+    `There will be ${questions.length} Questions
     in the quiz`,
     `Marks Will Be given according to Each Question`,
-    `The Deadline is ${parseDeadline(quizDetail.deadline)}`,
+    `The Deadline is ${parseDeadline(deadline)}`,
     `You Will Have Four Options in this only one will be the
     correct one`,
     `After you have done with the quiz click on submit
@@ -41,7 +50,11 @@ function Index({ quiz_id }) {
         </>
       )}
       <div className="start-btn">
-        <Button title={"Start"} type={BUTTON.BUTTON} />
+        <Button
+          title={"Start"}
+          type={BUTTON.BUTTON}
+          callBack={() => navigate("/quiz?id=" + _id)}
+        />
       </div>
     </div>
   );

@@ -1,0 +1,144 @@
+@use "../../styles/util.scss";
+@import "../../styles/variables.scss";
+
+.quiz-container {
+  @extend .flex-column;
+  width: 100%;
+  height: 80vh;
+  overflow-y: scroll;
+  .quiz-box-shadow {
+    box-shadow: 0.2rem 0.2rem 0.2rem 0.2rem $light-gray;
+  }
+  .create-quiz-btn {
+    @extend .flex-row, .flex-end;
+    width: 80%;
+    div {
+      @extend .padding-half, .gap-half;
+      margin-top: calc($spacing-unit * 0.8);
+      border-radius: 0.3rem;
+      cursor: pointer;
+      svg {
+        margin-right: calc($spacing-unit * 0.4);
+      }
+    }
+  }
+  .create-quiz-btn > div:hover,
+  .create-option-btn :hover {
+    background-color: $pale-gray;
+  }
+  .quiz-header {
+    @extend .flex-row, .padding-full, .gap-1, .quiz-box-shadow;
+    background-color: $white;
+    margin-top: 0.5rem;
+    border-radius: 0.2rem;
+    width: 80%;
+    .quiz-header-top {
+      @extend .flex-column;
+      align-items: flex-start;
+      gap: calc($spacing-unit * 1.5);
+      height: 100%;
+      .quiz-title {
+        font-size: calc($spacing-unit * 1.8);
+      }
+      .quiz-header-bottom > :nth-child(1) {
+        @extend .flex-row, .gap-1;
+        width: 100%;
+        text-transform: uppercase;
+      }
+      .max-score {
+        font-size: calc($spacing-unit * 1.1);
+      }
+      .created-by {
+        @extend .flex-row, .gap-half;
+      }
+    }
+    img {
+      width: calc($spacing-unit * 25);
+      border-radius: 0.2rem;
+    }
+  }
+  .questions {
+    @extend .flex-column, .padding-full, .gap-1;
+    width: 95%;
+    .question {
+      @extend .flex-column, .padding-full, .quiz-box-shadow;
+      border-radius: 0.2rem;
+      width: 80%;
+      .question-name {
+        @extend .flex-row;
+        align-items: flex-start;
+        width: 100%;
+        font-size: calc($spacing-unit * 1.3);
+        text-transform: capitalize;
+        font-weight: 600;
+        span {
+          color: $red;
+        }
+      }
+      .create-quiz-input {
+        width: 98%;
+        @extend .flex-row, .gap-1;
+        textarea {
+          @extend .padding-half;
+          border: 1px solid $light-gray;
+          outline: none;
+          resize: none;
+          font-size: calc($spacing-unit * 1);
+          height: calc($spacing-unit * 1.2);
+          width: 100%;
+          font-family: Poppins, sans-serif;
+        }
+      }
+      .options {
+        @extend .flex-column, .gap-1, .padding-full;
+        .create-option-btn > div {
+          @extend .padding-half;
+          cursor: pointer;
+          svg {
+            margin-right: calc($spacing-unit * 0.3);
+          }
+        }
+        align-items: flex-start;
+        width: 98%;
+        .option {
+          input[type="radio"] {
+            accent-color: $dark-gray;
+            cursor: pointer;
+            transform: scale(1.3);
+            margin-right: calc($spacing-unit * 0.4);
+          }
+          font-size: calc($spacing-unit * 1.2);
+        }
+      }
+      .marks {
+        @extend .flex-row, .gap-half, .padding-half, .flex-space-between;
+        width: 98%;
+        align-items: center;
+      }
+    }
+  }
+
+  .create-option,
+  .correct-answer,
+  .header-input,
+  .quiz-title-input,
+  .marks > input {
+    padding: calc($spacing-unit * 0.2);
+    font-size: calc($spacing-unit * 0.8);
+    outline: none;
+    font-family: Poppins, sans-serif;
+    border: 1px solid $light-gray;
+    cursor: pointer;
+  }
+  .quiz-title-input {
+    font-size: calc($spacing-unit * 1.3);
+  }
+  .quiz-category,
+  .quiz-deadline {
+    @extend .flex-row, .gap-half;
+    cursor: pointer;
+  }
+  .quiz-category > :nth-child(2) {
+    font-size: calc($spacing-unit * 0.9);
+  }
+}

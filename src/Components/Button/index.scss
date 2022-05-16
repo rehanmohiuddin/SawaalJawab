@@ -6,6 +6,7 @@ div {
     @extend .padding-half;
     cursor: pointer;
     white-space: nowrap;
+    border-radius: 0.2rem;
   }
   .btn-primary {
     background-color: $dark-gray;

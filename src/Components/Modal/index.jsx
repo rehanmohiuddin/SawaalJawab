@@ -3,10 +3,22 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { forwardRef, useEffect, useRef, useState } from "react";
 import "./index.scss";
 
-const Modal = ({ children, trigger, header }) => {
+const Modal = ({ children, trigger, header, Open, modelClose = () => {} }) => {
   const [isOpen, setOpen] = useState(null);
 
-  const closeModal = () => setOpen(null);
+  const closeModal = () => {
+    setOpen(null);
+    modelClose();
+  };
+
+  const open = () => setOpen(true);
+
+  useEffect(() => {
+    Open && open();
+    return () => {
+      modelClose();
+    };
+  }, [Open]);
 
   return (
     <div>

@@ -26,7 +26,7 @@ function Index({
     ),
     [BUTTON.LINK]: (
       <Link className={getBtnType[style]} to={linkTo} replace={replace}>
-        {title}
+        {title ?? children}
       </Link>
     ),
   };
