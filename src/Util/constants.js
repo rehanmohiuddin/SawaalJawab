@@ -26,6 +26,12 @@ const categories = [
   { name: "Toys & Games Trivia", icon: faGamepad },
   { name: "General Knowledge", icon: faInfo },
   { name: "Slogan & Business Trivia", icon: faBusinessTime },
+  { name: "Others", icon: faInfo },
 ];
 
-export { BUTTON, categories };
+const status = {
+  completed: "COMPLETED",
+  incomplete: "INCOMPLETE",
+};
+
+export { BUTTON, categories, status };

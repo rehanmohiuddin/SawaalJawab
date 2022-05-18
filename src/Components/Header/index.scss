@@ -50,6 +50,7 @@ header {
   }
   .avatar-icon {
     margin-right: calc($spacing-unit * 2);
+    cursor: pointer;
   }
   ul {
     @extend .flex-row, .gap-1, .flex-end;
@@ -121,4 +122,33 @@ header {
       left: 0;
     }
   }
+}
+
+.profile {
+  @extend .padding-full, .flex-column;
+  visibility: hidden;
+  position: absolute;
+  z-index: 1;
+  right: calc($spacing-unit * 1);
+  box-shadow: 0.2rem 0.2rem 0.2rem 0.2rem $pale-gray;
+  background-color: $white;
+  top: calc($spacing-unit * 5);
+}
+.profile::after {
+  content: " ";
+
+  position: absolute;
+  top: calc($spacing-unit * -0.7);
+  right: calc($spacing-unit * 2.5);
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent $light-gray transparent;
+}
+.avatar-icon:hover {
+  .profile {
+    visibility: visible;
+  }
+}
+.profile > :nth-child(2) {
+  font-size: calc($spacing-unit * 0.9);
 }

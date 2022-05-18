@@ -1,15 +1,14 @@
 @use "../../styles/util.scss";
+@import "../../styles/variables.scss";
 
 .container {
-  position: relative;
   align-items: baseline;
-  top: 6vh;
-  width: 90%;
-  left: 8vw;
+  width: 100%;
+  margin-left: calc($spacing-unit * 1);
+  margin-top: calc($spacing-unit * 6);
 }
 .home-root-container {
   @extend .flex-row;
-  top: 7vh;
-  height: 86vh;
+  height: 100vh;
   position: relative;
 }
