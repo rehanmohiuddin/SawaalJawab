@@ -48,7 +48,9 @@ function Header() {
       <div className="home-header">
         <Category
           selectCategory={(e) => {
-            quizAction.GetQuizByCategory(e.target.value.name.toLowerCase());
+            e.target.value.name === "All"
+              ? quizAction.GetQuizes()
+              : quizAction.GetQuizByCategory(e.target.value.name.toLowerCase());
             setCategory(e.target.value.name);
           }}
           trigger={

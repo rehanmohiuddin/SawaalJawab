@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./index.scss";
 import HomeContainer from "../../Components/HomeContainer";
-import { useSearchParams } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import QuizCover from "../../assets/quiz-thumbnail.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useQuiz } from "../../context/Quiz";
@@ -74,6 +74,12 @@ function Index() {
       });
   };
 
+  const url = `https://sawaal-jawab.vercel.app/quiz?id=${_id}`;
+
+  const twitterSharingURL = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
+    `I Got ${totalPercentage} in ${quizDetail?.title} Quiz \nCheck out this cool Project Here : `
+  )}&url=${url}`;
+
   return (
     <HomeContainer>
       <Quiz
@@ -107,9 +113,13 @@ function Index() {
                 <div>Percentage %</div>
                 <div>{totalPercentage}</div>
               </div>
-              <div className="share-score">
+              <a
+                href={twitterSharingURL}
+                target="_blank"
+                className="share-score"
+              >
                 <FontAwesomeIcon icon={faTwitter} size="2x" />
-              </div>
+              </a>
             </div>
             <div className="close-btn">
               <Button type={BUTTON.LINK} style={BUTTON.OUTLINE} title="Close" />
