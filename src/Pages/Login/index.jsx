@@ -79,6 +79,18 @@ function Index() {
     !errorState && !isEmpty ? authAction.Login(payload) : alert("failed");
   };
 
+  const guestLoginHandler = () => {
+    setField({
+      ...fields,
+      email: { ...fields.email, value: "rehan.4942@gmail.com" },
+      password: { ...fields.email, value: "Test@123" },
+    });
+    authAction.Login({
+      email: "rehan.4942@gmail.com",
+      password: "Test@123",
+    });
+  };
+
   return (
     <div className="auth-container">
       <Header />
@@ -95,6 +107,14 @@ function Index() {
             loading={loading}
             formFor={"Login"}
           />
+          <div className="login-btn">
+            <Button
+              title={"Login As Guest "}
+              style={BUTTON.LINK}
+              type={BUTTON.BUTTON}
+              callBack={guestLoginHandler}
+            />
+          </div>
           <div className="login-btn">
             <Button
               title={"New User ?"}

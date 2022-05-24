@@ -7,9 +7,11 @@ import QuizDetails from "./QuizDetail";
 import { useQuiz } from "../../context/Quiz";
 import { faPlayCircle, faShare } from "@fortawesome/free-solid-svg-icons";
 import QuizList from "../../Components/QuizList";
+import { useToast } from "../../context/Toast";
 
 function Index() {
   const { quizes, quizAction } = useQuiz();
+  const { toast } = useToast();
   const [quizSelected, setQuizSelected] = useState(null);
 
   useEffect(() => {
@@ -31,7 +33,17 @@ function Index() {
           >
             <QuizDetails quiz_id={quizSelected} />
           </Modal>
-          <div className="quix-share-icon">
+          <div
+            onClick={() => {
+              navigator.clipboard.writeText(
+                `https://sawaal-jawab.vercel.app/quiz?id=${quizSelected}`
+              );
+              toast.success({
+                message: "Copied To Clipboard",
+              });
+            }}
+            className="quix-share-icon"
+          >
             <FontAwesomeIcon icon={faShare} />
             Share
           </div>

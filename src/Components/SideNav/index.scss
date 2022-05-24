@@ -26,6 +26,9 @@ nav {
     color: $black;
     font-size: calc($spacing-unit * 1.5);
   }
+  a {
+    position: relative;
+  }
   img {
     width: calc($spacing-unit * 4);
     @extend .padding-full;
@@ -34,4 +37,36 @@ nav {
   svg {
     cursor: pointer;
   }
+}
+.nav-detail {
+  @extend .flex-column;
+  visibility: hidden;
+  position: absolute;
+  z-index: 1;
+  left: calc($spacing-unit * 4);
+  border: 1px solid $dark-gray;
+  background-color: $white;
+  top: calc($spacing-unit * 0.5);
+  width: calc($spacing-unit * 5);
+  height: calc($spacing-unit * 1.5);
+  text-align: center;
+}
+.nav-detail::after {
+  content: " ";
+
+  position: absolute;
+  top: calc($spacing-unit * 0.5);
+  right: calc($spacing-unit * 5.5);
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent $dark-gray transparent transparent;
+}
+a:hover {
+  .nav-detail {
+    visibility: visible;
+    color: $dark-gray;
+  }
+}
+.nav-detail > :nth-child(1) {
+  font-size: calc($spacing-unit * 0.9);
 }

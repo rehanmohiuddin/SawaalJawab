@@ -18,7 +18,8 @@ const BUTTON = {
 };
 
 const categories = [
-  { name: "All Trivia", icon: faCog },
+  { name: "All", icon: faInfo },
+  { name: "Others", icon: faInfo },
   { name: "Movie Trivia", icon: faFilm },
   { name: "Music Trivia", icon: faMusic },
   { name: "TV Trivia", icon: faTelevision },
@@ -26,7 +27,6 @@ const categories = [
   { name: "Toys & Games Trivia", icon: faGamepad },
   { name: "General Knowledge", icon: faInfo },
   { name: "Slogan & Business Trivia", icon: faBusinessTime },
-  { name: "Others", icon: faInfo },
 ];
 
 const status = {

@@ -1,4 +1,5 @@
 import { createContext, useContext, useReducer } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   loginInitialState,
   LOGIN_REQUEST,
@@ -18,6 +19,7 @@ const AuthContext = createContext(loginInitialState);
 
 const AuthProvider = ({ children }) => {
   const [state, dispatch] = useReducer(authReducer, loginInitialState);
+  const navigate = useNavigate();
 
   const authAction = {
     loader: () => dispatch({ type: TOGGLE_LOADER }),
@@ -46,6 +48,7 @@ const AuthProvider = ({ children }) => {
     logOut: () => {
       dispatch({ type: LOGOUT });
       LocalStorage.deleteUser();
+      navigate("/login");
     },
     getAuth: function () {
       const user = LocalStorage.getUser();

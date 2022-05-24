@@ -15,20 +15,22 @@ import { Link, useNavigate } from "react-router-dom";
 
 function Index() {
   const { authAction, user } = useAuth();
-  const navigate = useNavigate();
   const { firstName = "" } = user ?? {};
   const navRoutes = [
-    { route: "/", icon: faHome },
-    { route: "/quiz/create", icon: faPencil },
-    { route: "/quiz/user", icon: faRankingStar },
+    { route: "/", icon: faHome, name: "Home" },
+    { route: "/quiz/create", icon: faPencil, name: "Create" },
+    { route: "/quiz/user", icon: faRankingStar, name: "Quizes" },
   ];
   return (
     <nav>
       <button>{firstName.charAt(0)}</button>
       <div className="nav-icons">
-        {navRoutes.map(({ route, icon }) => (
+        {navRoutes.map(({ route, icon, name }) => (
           <Link to={route}>
             <FontAwesomeIcon className="nav-icon" icon={icon} size="2x" />
+            <div className="nav-detail">
+              <div>{name}</div>
+            </div>
           </Link>
         ))}
         <FontAwesomeIcon

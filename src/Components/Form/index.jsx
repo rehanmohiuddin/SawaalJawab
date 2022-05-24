@@ -19,8 +19,7 @@ const Index = ({
       <div className="form-title">{title}</div>
       <div className="error-msg">{errorState && errorState.errorMsg}</div>
       {Object.keys(fields).map((key) => {
-        const { name, type, placeholder, tagName, required, icon } =
-          fields[key];
+        const { name, type, placeholder, value, required, icon } = fields[key];
         return (
           <div class="kash-container  kash-flex kash-justify-center kash-align-center  kash-gap input-container">
             <div id="kash-input-click">
@@ -39,8 +38,8 @@ const Index = ({
                   name={key}
                   onChange={(e) => {
                     onTextInput(key, e.target.value);
-                    // textInput(key, e.target.value);
                   }}
+                  defaultValue={value}
                   className={"kash-input"}
                   type={type}
                   id="kash-input"
